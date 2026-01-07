@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiacha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 13:39:42 by mchiacha          #+#    #+#             */
+/*   Updated: 2026/01/07 13:39:43 by mchiacha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
 int	parse_integers(char **tokens, int **out_arr, int *out_n)
@@ -18,10 +30,7 @@ int	parse_integers(char **tokens, int **out_arr, int *out_n)
 	{
 		v = ft_atol(tokens[i]);
 		if (v > INT_MAX || v < INT_MIN)
-		{
-			free(arr);
-			return (0);
-		}
+			return (free(arr), 0);
 		arr[i] = (int)v;
 		i++;
 	}

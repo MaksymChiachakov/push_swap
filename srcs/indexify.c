@@ -1,11 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   indexify.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiacha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 13:18:07 by mchiacha          #+#    #+#             */
+/*   Updated: 2026/01/07 13:18:12 by mchiacha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
+
+void	quick_sort_index_supp(int *indices, int *arr, int *i, int *j)
+{
+	int	temp;
+
+	temp = arr[*i];
+	arr[*i] = arr[*j];
+	arr[*j] = temp;
+	temp = indices[*i];
+	indices[*i] = indices[*j];
+	indices[*j] = temp;
+}
 
 static void	quick_sort_index(int *arr, int *indices, int left, int right)
 {
 	int	pivot;
 	int	i;
 	int	j;
-	int	temp;
 
 	if (left >= right)
 		return ;
@@ -20,12 +43,7 @@ static void	quick_sort_index(int *arr, int *indices, int left, int right)
 			j--;
 		if (i <= j)
 		{
-			temp = arr[i];
-			arr[i] = arr[j];
-			arr[j] = temp;
-			temp = indices[i];
-			indices[i] = indices[j];
-			indices[j] = temp;
+			quick_sort_index_supp(indices, arr, &i, &j);
 			i++;
 			j--;
 		}
@@ -47,12 +65,7 @@ int	*indexify(int *arr, int n)
 	copy = malloc(sizeof(int) * n);
 	indices = malloc(sizeof(int) * n);
 	if (!copy || !indices)
-	{
-		free(res);
-		free(copy);
-		free(indices);
-		return (NULL);
-	}
+		return (free(res), free(copy), free(indices), NULL);
 	i = -1;
 	while (++i < n)
 	{
@@ -63,7 +76,5 @@ int	*indexify(int *arr, int n)
 	i = -1;
 	while (++i < n)
 		res[indices[i]] = i;
-	free(copy);
-	free(indices);
-	return (res);
+	return (free(copy), free(indices), res);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiacha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 14:28:19 by mchiacha          #+#    #+#             */
+/*   Updated: 2026/01/07 14:28:20 by mchiacha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
 /*
@@ -34,39 +46,24 @@ char	**split_str(const char *s)
 	char		**res;
 	int			i;
 	int			j;
-	const char	*p;
-	int			len;
 
 	words = count_words(s);
 	res = malloc(sizeof(char *) * (words + 1));
 	if (!res)
 		return (NULL);
-	i = 0;
-	p = s;
-	while (i < words)
+	i = -1;
+	while (++i < words)
 	{
-		while (*p == ' ')
-			p++;
+		while (*s == ' ')
+			s++;
 		j = 0;
-		while (p[j] && p[j] != ' ')
+		while (s[j] && s[j] != ' ')
 			j++;
 		res[i] = malloc(j + 1);
 		if (!res[i])
-		{
-			while (--i >= 0)
-				free(res[i]);
-			free(res);
-			return (NULL);
-		}
-		len = 0;
-		while (len < j)
-		{
-			res[i][len] = p[len];
-			len++;
-		}
-		res[i][len] = '\0';
-		p += j;
-		i++;
+			return (split_str_supp(i, res), NULL);
+		split_str_supp_len(&i, &j, res, s);
+		s += j;
 	}
 	res[words] = NULL;
 	return (res);
@@ -80,43 +77,21 @@ char	**split_args(int argc, char **argv)
 {
 	char	**all;
 	char	**tmp;
-	int		total;
 	int		i;
-	int		j;
 
-	all = NULL;
-	total = 0;
+	all = malloc(sizeof(char *) * 1000);
+	if (!all)
+		return (NULL);
 	i = 1;
 	while (i < argc)
 	{
 		if (ft_strlen(argv[i]) == 0)
-		{
-			i++;
 			continue ;
-		}
 		tmp = split_str(argv[i]);
 		if (!tmp)
-		{
-			free_tokens(all);
 			return (NULL);
-		}
-		j = 0;
-		while (tmp[j])
-			j++;
-		all = realloc(all, sizeof(char *) * (total + j + 1));
-		if (!all)
-		{
-			free_tokens(tmp);
-			free_tokens(all);
-			return (NULL);
-		}
-		j = 0;
-		while (tmp[j])
-			all[total++] = tmp[j++];
-		free(tmp);
+		split_args_supp(tmp, all);
 		i++;
 	}
-	if (all)
-		all[total] = NULL;
 	return (all);
 }
