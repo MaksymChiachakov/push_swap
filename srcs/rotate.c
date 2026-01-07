@@ -12,7 +12,6 @@
 
 #include "../include/push_swap.h"
 
-/* rotate array left */
 void	rotate_left(int *arr, int len)
 {
 	int	tmp;
@@ -30,7 +29,6 @@ void	rotate_left(int *arr, int len)
 	arr[len - 1] = tmp;
 }
 
-/* rotate right */
 void	rotate_right(int *arr, int len)
 {
 	int	tmp;

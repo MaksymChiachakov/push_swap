@@ -12,9 +12,6 @@
 
 #include "../include/push_swap.h"
 
-/*
-** count words in a string separated by spaces
-*/
 static int	count_words(const char *s)
 {
 	int	in;
@@ -36,10 +33,6 @@ static int	count_words(const char *s)
 	return (i);
 }
 
-/*
-** split_str: returns NULL-terminated array of words
-** robust: frees allocated memory on error
-*/
 char	**split_str(const char *s)
 {
 	int			words;
@@ -69,10 +62,6 @@ char	**split_str(const char *s)
 	return (res);
 }
 
-/*
-** split_args: flatten argv (support "1 2 3" tokens)
-** robust: frees partial allocations on failure
-*/
 char	**split_args(int argc, char **argv)
 {
 	char	**all;

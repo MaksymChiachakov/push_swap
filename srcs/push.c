@@ -12,7 +12,6 @@
 
 #include "../include/push_swap.h"
 
-/* push a->b */
 void	pb(t_stack *s)
 {
 	int	i;
@@ -36,7 +35,6 @@ void	pb(t_stack *s)
 	ft_putstr_fd("pb\n", 1);
 }
 
-/* push b->a */
 void	pa(t_stack *s)
 {
 	int	i;
