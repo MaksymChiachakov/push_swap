@@ -47,16 +47,16 @@ void	sort_3(t_stack *s)
 
 void	sort_4(t_stack *s)
 {
-	push_min_to_b(s); // pousse le plus petit vers b
-	sort_3(s);        // tri le reste
-	pa(s);            // ramène le minimum
+	push_min_to_b(s);
+	sort_3(s);
+	pa(s);
 }
 
 void	sort_5(t_stack *s)
 {
-	push_min_to_b(s); // pousse le plus petit vers b
-	push_min_to_b(s); // pousse le 2ème plus petit vers b
-	sort_3(s);        // tri les 3 restants
-	pa(s);            // ramène 2ème min
-	pa(s);            // ramène 1er min
+	push_min_to_b(s);
+	push_min_to_b(s);
+	sort_3(s);
+	pa(s);
+	pa(s);
 }

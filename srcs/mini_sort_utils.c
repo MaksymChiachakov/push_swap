@@ -23,7 +23,6 @@ void	push_min_to_b(t_stack *s)
 	int	size;
 
 	int pos = find_min_pos(s);
-		// utilise la fonction que tu as dans mini_sort_utils.c
 	size = s->size_a;
 	if (pos <= size / 2)
 	{
