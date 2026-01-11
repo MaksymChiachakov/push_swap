@@ -33,7 +33,7 @@ char	**split_str(const char *s);
 void	free_tokens(char **tokens);
 char	**split_str_supp(int i, char **res);
 void	split_str_supp_len(int *i, int *j, char **res, const char *p);
-void	split_args_supp(char **tmp, char **all);
+int		split_args_fill(char **all, char **argv, int argc);
 
 /* validate.c */
 int		parse_integers(char **tokens, int **out_arr, int *out_n);

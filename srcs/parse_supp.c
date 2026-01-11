@@ -30,15 +30,28 @@ void	split_str_supp_len(int *i, int *j, char **res, const char *p)
 	res[*i][len] = '\0';
 }
 
-void	split_args_supp(char **tmp, char **all)
+int	split_args_fill(char **all, char **argv, int argc)
 {
-	int	j;
-	int	total;
+	char	**tmp;
+	int		i;
+	int		total;
+	int		j;
 
-	j = 0;
+	i = 0;
 	total = 0;
-	while (tmp[j])
-		all[total++] = tmp[j++];
-	free(tmp);
+	while (++i < argc)
+	{
+		if (ft_strlen(argv[i]) == 0)
+			continue ;
+		tmp = split_str(argv[i]);
+		if (!tmp)
+			return (-1);
+		j = 0;
+		while (tmp[j])
+			all[total++] = tmp[j++];
+		free(tmp);
+	}
 	all[total] = NULL;
+	return (total);
 }
+

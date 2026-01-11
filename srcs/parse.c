@@ -65,22 +65,13 @@ char	**split_str(const char *s)
 char	**split_args(int argc, char **argv)
 {
 	char	**all;
-	char	**tmp;
-	int		i;
 
 	all = malloc(sizeof(char *) * 1000);
 	if (!all)
 		return (NULL);
-	i = 1;
-	while (i < argc)
-	{
-		if (ft_strlen(argv[i]) == 0)
-			continue ;
-		tmp = split_str(argv[i]);
-		if (!tmp)
-			return (NULL);
-		split_args_supp(tmp, all);
-		i++;
-	}
+	all[0] = NULL;
+	if (split_args_fill(all, argv, argc) == -1)
+		return (free(all), NULL);
 	return (all);
 }
+
